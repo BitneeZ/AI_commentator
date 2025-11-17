@@ -9,7 +9,7 @@ OUTPUT_TXT_PATH = "valorant_events.txt"  # Логи
 CONFIDENCE_THRESHOLD = 0.5  # Порог уверенности для детекции
 
 
-# Загрузка обученной модели YOLOv8
+# Загрузка обученной модели
 model = YOLO(MODEL_PATH)
 
 
