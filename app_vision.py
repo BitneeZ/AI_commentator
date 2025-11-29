@@ -9,7 +9,6 @@ import tkinter as tk
 from ultralytics import YOLO
 
 # --- НАСТРОЙКИ ---
-# ВАЖНО: Убедись, что файл лежит именно по этому пути относительно скрипта!
 MODEL_PATH = "runs/detect/valorant_events_yolov8s2/weights/best.pt" 
 CONFIDENCE_THRESHOLD = 0.5
 COOLDOWN_SECONDS = 2.0 
@@ -195,4 +194,5 @@ if __name__ == "__main__":
         print("Подробности:")
         traceback.print_exc()
         print("="*50)
+
         input("\nНажмите Enter, чтобы закрыть это окно...")
