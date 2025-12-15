@@ -1,6 +1,11 @@
 from resources.smartmanager import *
 from resources.valorantoverlay import *
 from resources.workers import *
+import queue
+import threading
+import os
+import torch
+from ultralytics import YOLO
 
 
 if __name__ == "__main__":
@@ -19,7 +24,7 @@ if __name__ == "__main__":
     # 3. Загрузка тяжелых моделей
     print(">>> Загрузка YOLO...")
     yolo_model = YOLO(MODEL_PATH)
-    
+    print(">>> Загрузка LLM...")
     print(">>> Загрузка TTS...")
     device = torch.device('cpu')
     local_file = 'tts_model.pt'

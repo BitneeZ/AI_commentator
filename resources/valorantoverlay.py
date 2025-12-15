@@ -1,14 +1,7 @@
 from resources.smartmanager import *
 from resources.nlp_dlm import generate_text
 import tkinter as tk
-from ultralytics import YOLO
-import os
-import torch
 import mss
-import queue
-import threading
-import librosa
-import sounddevice as sd
 import cv2
 import numpy as np
 
