@@ -130,7 +130,7 @@ class ValorantOverlay:
         self.root.mainloop()
 
     def llm_worker(self):
-        """Берет событие, отправляет в GigaChat, кладет результат в очередь озвучки"""
+        """Берет событие, отправляет в llm, кладет результат в очередь озвучки"""
         while True:
             event_id = self.llm_queue.get()
             if event_id is None: break
@@ -139,7 +139,7 @@ class ValorantOverlay:
             description = event_descriptions.get(event_id, event_id)
             
             # Показываем на экране, что думаем...
-            self.label.config(text=f"⚡ GigaChat думает: {description}...", fg="yellow")
+            #self.label.config(text=f"⚡ GigaChat думает: {description}...", fg="yellow")
             
             # --- ВЫЗОВ ТВОЕЙ ФУНКЦИИ ---
             print(f"[LLM] Генерирую для: {description}")
@@ -214,3 +214,4 @@ class ValorantOverlay:
 
 if __name__ == "__main__":
     app = ValorantOverlay()
+
