@@ -1,4 +1,4 @@
-from valo_log import *
+from resources.valo_log import *
 import time
 from collections import deque, Counter
 
