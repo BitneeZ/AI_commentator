@@ -17,5 +17,5 @@ keys.json
 chat.py
 gemini.py
 meta_data.py
-nlp_dlm.py
 valo_log.py
+start.bat

@@ -1,5 +1,5 @@
-from smartmanager import *
-from valorantoverlay import *
+from resources.smartmanager import *
+from resources.valorantoverlay import *
 
 
 if __name__ == "__main__":

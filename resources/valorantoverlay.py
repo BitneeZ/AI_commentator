@@ -1,5 +1,5 @@
-from smartmanager import *
-from nlp_dlm import generate_text
+from resources.smartmanager import *
+from resources.nlp_dlm import generate_text
 import tkinter as tk
 from ultralytics import YOLO
 import os
