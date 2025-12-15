@@ -10,7 +10,7 @@ class ValorantOverlay:
     def __init__(self):
         # Инициализация окна
         self.root = tk.Tk()
-        self.root.title("AI Overlay")
+        self.root.title("VALCOMMS")
         self.root.overrideredirect(True)
         self.root.wm_attributes("-topmost", True)
         self.root.wm_attributes("-transparentcolor", "black")
@@ -45,9 +45,6 @@ class ValorantOverlay:
         self.label.config(text=text, fg=color)
     
     def update_gui(self):
-        """
-        ВАЖНО: Этот метод нужно вызывать в цикле while, 
-        чтобы окно не зависло. Вместо root.mainloop()
-        """
+        """ Этот метод нужно вызывать в цикле while, чтобы окно не зависло."""
         self.root.update_idletasks()
         self.root.update()

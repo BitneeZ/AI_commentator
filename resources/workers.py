@@ -24,31 +24,33 @@ def llm_worker(llm_queue, speech_queue, gui_ref):
         
         llm_queue.task_done()
 
-def tts_worker(speech_queue, tts_model, gui_ref):
+def tts_worker(speech_queue, tts_model, gui_queue):
     """Слушает очередь речи, обновляет GUI, воспроизводит звук"""
     while True:
         data = speech_queue.get()
         if data is None: break
         
         text, event_id = data
+
         color = "red" if ("enemy" in event_id or "bomb" in event_id) else "#00FF00"
         
-        # Обновляем текст на экране (из этого потока)
-        # В Tkinter это не thread-safe, но часто работает. 
-        # В идеале нужно использовать очередь для GUI, но для упрощения оставим так.
-        gui_ref.set_text(text, color)
+        # 1. ВМЕСТО ПРЯМОГО ВЫЗОВА, КИДАЕМ В ОЧЕРЕДЬ
+        # Отправляем кортеж (текст, цвет)
+        gui_queue.put((text, color))
         
-        audio = tts_model.apply_tts(text=text, speaker=VOICE_SPEAKER, sample_rate=SAMPLE_RATE)
+        # 2. Синтез и воспроизведение (это можно делать в фоне)
+        audio = tts_model.apply_tts(text=text, speaker='baya', sample_rate=48000)
         audio_np = audio.numpy()
         
-        if ENABLE_ANIME_VOICE:
-            audio_np = librosa.effects.pitch_shift(audio_np, sr=SAMPLE_RATE, n_steps=ANIME_PITCH_STEPS)
+        # (Если нужен питч шифт, добавь сюда librosa)
         
-        sd.play(audio_np, SAMPLE_RATE)
+        sd.play(audio_np, 48000)
         sd.wait()
         
+        # Пауза, чтобы текст повисел
         time.sleep(1.5)
-        gui_ref.set_text("") # Очистка
+        
+        # 3. ОЧИСТКА ТЕКСТА (Тоже через очередь)
+        gui_queue.put(("", "#00FF00"))
 
-            
-        speech_queue.task_done()
+    speech_queue.task_done()

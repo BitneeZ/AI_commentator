@@ -11,11 +11,10 @@ dataset/
 runs/
 videos/
 
-*.pt
 keys.json
 
 chat.py
 gemini.py
 meta_data.py
-valo_log.py
-start.bat
+yolov8s.pt
+yolo11n.pt
