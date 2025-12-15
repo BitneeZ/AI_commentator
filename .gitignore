@@ -10,7 +10,6 @@ __pycache__/
 dataset/
 runs/
 videos/
-voices/
 
 *.pt
 keys.json
