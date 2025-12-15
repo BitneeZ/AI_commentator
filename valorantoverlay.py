@@ -17,7 +17,7 @@ class ValorantOverlay:
     def __init__(self):
         print("1. Интерфейс...")
         self.root = tk.Tk()
-        self.root.title("Valorant AI + LLM")
+        self.root.title("ValComms")
         self.root.overrideredirect(True)
         self.root.wm_attributes("-topmost", True)
         self.root.wm_attributes("-transparentcolor", "black")
