@@ -12,7 +12,6 @@ def llm_worker(llm_queue, speech_queue, gui_ref):
         
         description = EVENT_DESCRIPTIONS.get(event_id, event_id)
         # Прямое обращение к методу класса GUI (безопасно для Tkinter только чтение/простые операции)
-        # Лучше использовать gui_ref.set_text, но аккуратно с потоками
         print(f"[LLM] Генерация: {description}")
         
         generated_text = generate_text(description, GIGACHAT_TOKEN)
@@ -34,11 +33,10 @@ def tts_worker(speech_queue, tts_model, gui_queue):
 
         color = "red" if ("enemy" in event_id or "bomb" in event_id) else "#00FF00"
         
-        # 1. ВМЕСТО ПРЯМОГО ВЫЗОВА, КИДАЕМ В ОЧЕРЕДЬ
         # Отправляем кортеж (текст, цвет)
         gui_queue.put((text, color))
         
-        # 2. Синтез и воспроизведение (это можно делать в фоне)
+        # Синтез и воспроизведение (это можно делать в фоне)
         audio = tts_model.apply_tts(text=text, speaker='baya', sample_rate=48000)
         audio_np = audio.numpy()
         
@@ -50,7 +48,7 @@ def tts_worker(speech_queue, tts_model, gui_queue):
         # Пауза, чтобы текст повисел
         time.sleep(1.5)
         
-        # 3. ОЧИСТКА ТЕКСТА (Тоже через очередь)
+        # ОЧИСТКА ТЕКСТА
         gui_queue.put(("", "#00FF00"))
 
     speech_queue.task_done()
