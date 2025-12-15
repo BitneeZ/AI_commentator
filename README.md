@@ -157,3 +157,16 @@ graph TD
         Silero -->|Audio| Speakers[Audio Output]
     end
 ```
+
+
+## Список используемых библиотек в проекте
+
+*  ultralytics
+*  mss
+*  opencv-python
+*  numpy<2
+*  torch
+*  sounddevice
+*  librosa
+*  requests
+*  urllib3
