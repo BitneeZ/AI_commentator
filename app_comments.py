@@ -17,7 +17,7 @@ import sounddevice as sd
 import librosa
 
 
-# --- НАСТРОЙКИ ---апвро
+# --- НАСТРОЙКИ ---
 MODEL_PATH = "runs/detect/valorant_events_yolov8s2/weights/best.pt" 
 CONFIDENCE_THRESHOLD = 0.5
 TEXT_DISAPPEAR_DELAY = 0.5 
