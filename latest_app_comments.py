@@ -118,7 +118,7 @@ class ValorantOverlay:
         self.speech_queue = queue.Queue() # Текст -> Озвучка
 
         # --- ЗАПУСК ПОТОКОВ ---
-        # 1. Поток, который генерирует текст через GigaChat
+        # 1. Поток, который генерирует текст
         self.llm_thread = threading.Thread(target=self.llm_worker, daemon=True)
         self.llm_thread.start()
 
@@ -139,7 +139,7 @@ class ValorantOverlay:
             description = event_descriptions.get(event_id, event_id)
             
             # Показываем на экране, что думаем...
-            #self.label.config(text=f"⚡ GigaChat думает: {description}...", fg="yellow")
+            # self.label.config(text=f"⚡ GigaChat думает: {description}...", fg="yellow")
             
             # --- ВЫЗОВ ТВОЕЙ ФУНКЦИИ ---
             print(f"[LLM] Генерирую для: {description}")
@@ -214,4 +214,3 @@ class ValorantOverlay:
 
 if __name__ == "__main__":
     app = ValorantOverlay()
-
