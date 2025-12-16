@@ -1,0 +1,9 @@
+ultralytics
+mss
+opencv-python
+numpy<2
+torch
+sounddevice
+librosa
+requests
+urllib3
